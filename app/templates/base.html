@@ -72,9 +72,11 @@
         href="https://a5.behance.net/55b0b20d35b5429edf618e2c7ea534ac4eb959eb/img/site/favicon.ico?cb=264615658">
     <link rel="apple-touch-icon"
         href="https://a5.behance.net/55b0b20d35b5429edf618e2c7ea534ac4eb959eb/img/site/apple-touch-icon.png?cb=264615658">
-
-    <title>Behance :: Best of Behance</title>
-
+    {% if title %}
+        <title>{{title}} :: portfolio</title>
+    {%else%}
+        <title>Home</title>
+    {% endif %}
     <link rel="preconnect" href="https://mir-cdn.behance.net">
     <link rel="preconnect" href="https://mir-s3-cdn-cf.behance.net">
     <link rel="preconnect" href="https://c.evidon.com">
@@ -98,7 +100,7 @@
                 <div
                     class="form-item form-item-a js-rf-button-container rf-button__container rf-primary-nav__signup-button--large form-button-wrap">
                     <a class="form-button js-rf-button rf-button js-adobeid-signup"
-                    href="#" 
+                    href="{{url_for('auth.register')}}"
                         data-signup-from="Discover_BlueButton_SignUp_Header_B" unselectable="on" tabindex="0"><span
                             class=" rf-button__icon-container rf-button__icon-container--leading"></span><span
                             class="rf-button__label">Register Now</span><span
@@ -110,6 +112,7 @@
                 <a href=""><img src="{{url_for('static', filename='images/social_logos/facebook.png')}}" alt="facebook logo" height="32" width="32"></a>
                 <pre class="tab"></pre>
                 <a href=""><img src="{{url_for('static', filename='images/social_logos/linkedin.svg')}}" alt="Linkedin Logo" height="32" width="32"></a>
+                
 
                                 
         </ul>
@@ -127,17 +130,22 @@
                 </a> </li>
             <li class="rf-primary-nav__item"> <a class="rf-primary-nav__link js-adobeid-signin qa-adobeid-signin"
                     href="" data-signin-from="Header">Sign In</a> </li>
-                    {% with messages = get_flashed_messages() %}
-                    {% if messages %}
-                        {% for message in messages %}
-                        <div class="alert alert-info" role="alert">{{ message }}</div>
-                        {% endfor %}
-                    {% endif %}
-                    {% endwith %}
+                    
+                    
            
     </nav>
-    {% block content%}{% endblock %}
     
+    <h1>hello worl</h1>   
+    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                      {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                          <center>{{ message }}</center>
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                {% endwith %}
+    {% block content%} {% endblock %}
 
 </body>
 
