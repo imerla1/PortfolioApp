@@ -75,8 +75,13 @@
 
 
 <body>
+    
+    {% if current_user.is_authenticated %}
+        
+
+    {% else %}    
     <nav class="rf-primary-nav rf-primary-nav--main js-nav-primary"> <a href="/" class="rf-primary-nav__behance-logo">
-            <h5 style="color: aliceblue;">Home Page</h5>
+            <!-- LOGO HERE -->
             </svg> </a>
         <ul class="rf-primary-nav__menu js-main-nav">
             <li class="rf-primary-nav__item"> <a class="rf-primary-nav__link  qa-nav-discover active" href="/galleries">
@@ -84,59 +89,35 @@
             <li class="rf-primary-nav__item"> <a class="rf-primary-nav__link  qa-nav-discover active" href="/live"> Registration</a> </li>
             <li class="rf-primary-nav__item"> <a class="rf-primary-nav__link  qa-nav-discover active" href="/joblist"> About me</a> </li>
             <li class="rf-primary-nav__item rf-primary-nav__item--signup">
-    
-    {% if current_user.is_authenticated %}
-        <div
-        class="form-item form-item-a js-rf-button-container rf-button__container rf-primary-nav__signup-button--large form-button-wrap">
-        <a class="form-button js-rf-button rf-button js-adobeid-signup"
-        href="{{url_for('main.profile', username=current_user.username)}}"
-            data-signup-from="Discover_BlueButton_SignUp_Header_B" unselectable="on" tabindex="0"><span
-                class=" rf-button__icon-container rf-button__icon-container--leading"></span><span
-                class="rf-button__label">Profile</span><span
-                class="rf-button__icon-container rf-button__icon-container--trailing"></span></a> </div>
-            
-
-    {% else %}    
-        <div
-        class="form-item form-item-a js-rf-button-container rf-button__container rf-primary-nav__signup-button--large form-button-wrap">
-        <a class="form-button js-rf-button rf-button js-adobeid-signup"
-        href="{{url_for('auth.register')}}"
-            data-signup-from="Discover_BlueButton_SignUp_Header_B" unselectable="on" tabindex="0"><span
-                class=" rf-button__icon-container rf-button__icon-container--leading"></span><span
-                class="rf-button__label">Register Now</span><span
-                class="rf-button__icon-container rf-button__icon-container--trailing"></span></a> </div>
-                
-        
-                
-                
-                
-               
-        
-        
-                    
-                    
-    {% endif %}
-        
-        <span class="hide-phone hide-tablet or">Contact me</span>
+                <div
+                    class="form-item form-item-a js-rf-button-container rf-button__container rf-primary-nav__signup-button--large form-button-wrap">
+                    <a class="form-button js-rf-button rf-button js-adobeid-signup"
+                    href="{{url_for('auth.register')}}"
+                        data-signup-from="Discover_BlueButton_SignUp_Header_B" unselectable="on" tabindex="0"><span
+                            class=" rf-button__icon-container rf-button__icon-container--leading"></span><span
+                            class="rf-button__label">Register Now</span><span
+                            class="rf-button__icon-container rf-button__icon-container--trailing"></span></a> </div>
+                <span class="hide-phone hide-tablet or">Contact me</span>
                 <!-- Social network logos -->
                 <a href=""><img src="{{url_for('static', filename='images/social_logos/instagram.png')}}" alt="instagram logo" height="32" width="32"></a>
                 <pre class="tab"></pre>
                 <a href=""><img src="{{url_for('static', filename='images/social_logos/facebook.png')}}" alt="facebook logo" height="32" width="32"></a>
                 <pre class="tab"></pre>
                 <a href=""><img src="{{url_for('static', filename='images/social_logos/linkedin.svg')}}" alt="Linkedin Logo" height="32" width="32"></a>
-                {% if current_user.is_authenticated%}
-                <li class="rf-primary-nav__item"> <a class="rf-primary-nav__link js-adobeid-signin qa-adobeid-signin"
-                    href="{{url_for('auth.logout')}}" data-signin-from="Header">Log Out</a> </li>
                 
-                
-                {% else %}
-                <li class="rf-primary-nav__item"> <a class="rf-primary-nav__link js-adobeid-signin qa-adobeid-signin"
+               
+        </ul>
+        <ul class="rf-primary-nav__actions">
+            
+            <li class="rf-primary-nav__item"> <a class="rf-primary-nav__link js-adobeid-signin qa-adobeid-signin"
                     href="{{url_for('auth.login')}}" data-signin-from="Header">Sign In</a> </li>
-                {% endif %}
+                    
+                    
+        {% endif %}
     </nav>
     
-    <h1>hello wor</h1>
     
+    <h1>hello worl</h1>   
     {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                       {% for category, message in messages %}
@@ -146,7 +127,6 @@
                       {% endfor %}
                     {% endif %}
                 {% endwith %}
-    
     {% block content%} {% endblock %}
     
                          
